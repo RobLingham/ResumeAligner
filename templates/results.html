@@ -54,6 +54,7 @@
 {% block scripts %}
 <script>
     window.analysisResult = {{ analysis_result | tojson | safe }};
+    console.log('Raw analysis result:', window.analysisResult);
 </script>
 <script src="{{ url_for('static', filename='js/results.js') }}"></script>
 {% endblock %}

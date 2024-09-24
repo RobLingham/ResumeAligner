@@ -17,25 +17,32 @@ def upload():
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
-    resume_text = request.form.get('resume_text')
-    job_description = request.form.get('job_description')
+    try:
+        resume_content = None
+        job_description = request.form.get('job_description')
 
-    if not resume_text:
-        resume_file = request.files.get('resume_file')
-        if resume_file:
-            resume_text = resume_file.read().decode('utf-8')
+        if 'resume_file' in request.files:
+            resume_file = request.files['resume_file']
+            if resume_file.filename != '':
+                resume_content = resume_file.read()
         else:
+            resume_content = request.form.get('resume_text')
+
+        if not resume_content:
             return jsonify({'error': 'Missing resume'}), 400
 
-    if not job_description:
-        return jsonify({'error': 'Missing job description'}), 400
+        if not job_description:
+            return jsonify({'error': 'Missing job description'}), 400
 
-    parsed_resume = parse_resume(resume_text)
-    parsed_jd = parse_job_description(job_description)
-    
-    analysis_result = analyze_alignment(parsed_resume, parsed_jd)
-    
-    return jsonify(analysis_result)
+        parsed_resume = parse_resume(resume_content)
+        parsed_jd = parse_job_description(job_description)
+        
+        analysis_result = analyze_alignment(parsed_resume, parsed_jd)
+        
+        return jsonify(analysis_result)
+    except Exception as e:
+        app.logger.error(f"Error during analysis: {str(e)}")
+        return jsonify({'error': 'An error occurred while analyzing the resume'}), 500
 
 @app.route('/results')
 def results():

@@ -5,6 +5,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 def analyze_alignment(resume, job_description):
+    logger.info("Starting alignment analysis")
     prompt = f"""
     Analyze the alignment between the following resume and job description:
 
@@ -42,6 +43,7 @@ def analyze_alignment(resume, job_description):
         for key in ['strengths', 'improvements', 'interview_questions']:
             if not analysis[key]:
                 analysis[key] = ['No data available']
+                logger.warning(f"No {key} provided in the analysis, using default value")
 
         logger.info(f"Final analysis result: {json.dumps(analysis, indent=2)}")
         return analysis

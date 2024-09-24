@@ -33,6 +33,7 @@ def upload():
 @app.route('/analyze', methods=['POST'])
 def analyze():
     try:
+        logger.info("Received POST request to /analyze")
         resume_content = None
         job_description = request.form.get('job_description')
 

@@ -44,7 +44,9 @@ def analyze():
             logger.error("Missing job description")
             return jsonify({'error': 'Missing job description'}), 400
 
+        logger.info("Parsing resume")
         parsed_resume = parse_resume(resume_content)
+        logger.info("Parsing job description")
         parsed_jd = parse_job_description(job_description)
         
         logger.info("Analyzing alignment")

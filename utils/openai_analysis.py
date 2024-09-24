@@ -1,5 +1,8 @@
 from openai_chat_completion.chat_request import send_openai_request
 import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 def analyze_alignment(resume, job_description):
     prompt = f"""
@@ -19,10 +22,13 @@ def analyze_alignment(resume, job_description):
     5. A brief explanation of the score
     """
 
-    response = send_openai_request(prompt)
-    
     try:
+        response = send_openai_request(prompt)
+        logger.info(f"OpenAI API response: {response}")
+        
         analysis = json.loads(response)
+        logger.info(f"Parsed JSON: {analysis}")
+
         # Ensure all required fields are present and valid
         analysis['score'] = float(analysis.get('score', 0))
         analysis['strengths'] = analysis.get('strengths', [])[:3]
@@ -35,15 +41,24 @@ def analyze_alignment(resume, job_description):
             if not analysis[key]:
                 analysis[key] = ['No data available']
 
-    except (json.JSONDecodeError, ValueError, KeyError) as e:
-        print(f"Error processing OpenAI response: {str(e)}")
-        # Return a default structure if there's an error
-        analysis = {
-            "score": 0,
-            "strengths": ['No data available'],
-            "improvements": ['No data available'],
-            "interview_questions": ['No data available'],
-            "explanation": "Error processing the analysis."
-        }
+        logger.info(f"Final analysis result: {analysis}")
+        return analysis
 
-    return analysis
+    except json.JSONDecodeError as e:
+        logger.error(f"Error decoding JSON: {str(e)}")
+        logger.error(f"Raw response: {response}")
+    except ValueError as e:
+        logger.error(f"Error processing values: {str(e)}")
+    except KeyError as e:
+        logger.error(f"Missing key in response: {str(e)}")
+    except Exception as e:
+        logger.error(f"Unexpected error: {str(e)}")
+
+    # Return a default structure if there's an error
+    return {
+        "score": 0,
+        "strengths": ['Error processing data'],
+        "improvements": ['Error processing data'],
+        "interview_questions": ['Error processing data'],
+        "explanation": "An error occurred while processing the analysis."
+    }

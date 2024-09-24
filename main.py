@@ -116,17 +116,6 @@ def results():
     
     return render_template('results.html', analysis_result=analysis_result)
 
-@app.route('/test_openai')
-def test_openai():
-    try:
-        prompt = "Hello, can you give me a short summary of what OpenAI does?"
-        response = send_openai_request(prompt)
-        logger.info("Successfully tested OpenAI API")
-        return jsonify({"success": True, "response": response})
-    except Exception as e:
-        logger.error(f"Error in test_openai route: {str(e)}", exc_info=True)
-        return jsonify({"success": False, "error": str(e)}), 500
-
 @app.errorhandler(404)
 def page_not_found(e):
     logger.error(f"404 error: {str(e)}")

@@ -50,7 +50,7 @@ def analyze_alignment(resume, job_description):
         logger.error(f"Error processing values: {str(e)}")
         return create_error_response("Error processing analysis values")
     except Exception as e:
-        logger.error(f"Unexpected error: {str(e)}", exc_info=True)
+        logger.error(f"Unexpected error during analysis: {str(e)}", exc_info=True)
         return create_error_response("An unexpected error occurred during analysis")
 
 def create_error_response(error_message):

@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch (error) {
             console.error('Error:', error);
-            showError(error.message || 'An error occurred while analyzing the resume');
+            showError(error.message || 'An error occurred while analyzing the resume. Please try again.');
         } finally {
             hideLoading();
             analyzeBtn.disabled = false;

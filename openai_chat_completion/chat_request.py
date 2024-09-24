@@ -1,7 +1,7 @@
 import os
 import logging
 from openai import OpenAI
-from tenacity import retry, stop_after_attempt, wait_random_exponential
+from tenacity import retry, stop_after_attempt, wait_random_exponential, RetryError
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 if not OPENAI_API_KEY:
@@ -24,6 +24,9 @@ def send_openai_request(prompt: str) -> str:
             raise ValueError("OpenAI returned an empty response.")
         logger.info(f"Received response from OpenAI API: {content[:100]}...")
         return content
+    except RetryError as e:
+        logger.error(f"Max retries reached for OpenAI API call: {str(e)}")
+        raise
     except Exception as e:
-        logger.error(f"Error in OpenAI API call: {str(e)}")
+        logger.error(f"Error in OpenAI API call: {str(e)}", exc_info=True)
         raise

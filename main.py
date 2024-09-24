@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, url_for, redirect, abort, session
+from flask import Flask, render_template, request, jsonify, url_for, redirect, abort, session, make_response
 from werkzeug.utils import secure_filename
 from utils.resume_parser import parse_resume
 from utils.job_description_parser import parse_job_description
@@ -10,7 +10,7 @@ import json
 
 app = Flask(__name__)
 app.config.from_object('config')
-app.secret_key = os.urandom(24)  # Add this line to set a secret key for the session
+app.secret_key = os.urandom(24)
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -68,7 +68,14 @@ def analyze():
         # Store the analysis result in the session
         session['analysis_result'] = analysis_result
         
-        return redirect(url_for('results'))
+        # Return JSON response with redirect URL
+        response = make_response(jsonify({
+            'redirect': url_for('results'),
+            'analysis_result': analysis_result
+        }))
+        response.headers['Content-Type'] = 'application/json'
+        return response, 200
+
     except Exception as e:
         logger.error(f"Error during analysis: {str(e)}", exc_info=True)
         error_response = {'error': 'An error occurred while analyzing the resume'}

@@ -70,8 +70,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.ok) {
                 const result = await response.json();
-                localStorage.setItem('analysisResult', JSON.stringify(result));
-                window.location.href = '/results';
+                if (result.redirect) {
+                    localStorage.setItem('analysisResult', JSON.stringify(result.analysis_result));
+                    window.location.href = result.redirect;
+                } else {
+                    throw new Error('Invalid response from server');
+                }
             } else {
                 const error = await response.json();
                 alert(`Error: ${error.error}`);

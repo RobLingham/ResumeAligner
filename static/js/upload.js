@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const resumeText = document.getElementById('resumeText');
     const jobDescription = document.getElementById('jobDescription');
     const analyzeBtn = document.getElementById('analyzeBtn');
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'loading-indicator hidden';
+    loadingIndicator.innerHTML = '<div class="spinner"></div><p>Analyzing...</p>';
+    document.body.appendChild(loadingIndicator);
 
     let resumeFile = null;
 
@@ -47,6 +51,9 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        loadingIndicator.classList.remove('hidden');
+        analyzeBtn.disabled = true;
+
         const formData = new FormData();
         if (resumeFile) {
             formData.append('resume_file', resumeFile);
@@ -72,6 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Error:', error);
             alert('An error occurred while analyzing the resume');
+        } finally {
+            loadingIndicator.classList.add('hidden');
+            analyzeBtn.disabled = false;
         }
     });
 });

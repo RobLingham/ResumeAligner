@@ -23,18 +23,26 @@ def analyze_alignment(resume, job_description):
     
     try:
         analysis = json.loads(response)
-        # Ensure the score is a valid number
-        if 'score' in analysis:
-            analysis['score'] = float(analysis['score'])
-        else:
-            analysis['score'] = 0
-    except (json.JSONDecodeError, ValueError):
-        # If the response is not valid JSON or score is not a number, return a default structure
+        # Ensure all required fields are present and valid
+        analysis['score'] = float(analysis.get('score', 0))
+        analysis['strengths'] = analysis.get('strengths', [])[:3]
+        analysis['improvements'] = analysis.get('improvements', [])[:3]
+        analysis['interview_questions'] = analysis.get('interview_questions', [])[:3]
+        analysis['explanation'] = analysis.get('explanation', 'No explanation provided.')
+
+        # Ensure lists have at least one item
+        for key in ['strengths', 'improvements', 'interview_questions']:
+            if not analysis[key]:
+                analysis[key] = ['No data available']
+
+    except (json.JSONDecodeError, ValueError, KeyError) as e:
+        print(f"Error processing OpenAI response: {str(e)}")
+        # Return a default structure if there's an error
         analysis = {
             "score": 0,
-            "strengths": [],
-            "improvements": [],
-            "interview_questions": [],
+            "strengths": ['No data available'],
+            "improvements": ['No data available'],
+            "interview_questions": ['No data available'],
             "explanation": "Error processing the analysis."
         }
 

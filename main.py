@@ -80,13 +80,14 @@ def analyze():
         logger.info(f"Analysis result: {json.dumps(analysis_result, indent=2)}")
         
         # Store the analysis result in the session
-        session['analysis_result'] = analysis_result
+        session['analysis_result'] = json.dumps(analysis_result)
         
         # Return JSON response with redirect URL
-        response = make_response(jsonify({
+        response_data = {
             'redirect': url_for('results'),
             'analysis_result': analysis_result
-        }))
+        }
+        response = make_response(jsonify(response_data))
         response.headers['Content-Type'] = 'application/json'
         return response, 200
 
@@ -102,6 +103,13 @@ def results():
     if not analysis_result:
         logger.error("No analysis result found in session")
         return redirect(url_for('upload'))
+    
+    try:
+        analysis_result = json.loads(analysis_result)
+    except json.JSONDecodeError:
+        logger.error("Failed to decode analysis result from session")
+        return redirect(url_for('upload'))
+    
     logger.info(f"Rendering results template with analysis result: {json.dumps(analysis_result, indent=2)}")
     return render_template('results.html', analysis_result=analysis_result)
 

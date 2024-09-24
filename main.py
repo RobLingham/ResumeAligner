@@ -80,6 +80,7 @@ def analyze():
 
         logger.info(f"Analysis result: {json.dumps(analysis_result, indent=2)}")
         
+        # Store the analysis result in the session
         session['analysis_result'] = json.dumps(analysis_result)
         
         response_data = {

@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename
 from utils.resume_parser import parse_resume
 from utils.job_description_parser import parse_job_description
 from utils.openai_analysis import analyze_alignment
+from openai_chat_completion.chat_request import send_openai_request
 import os
 import logging
 import json
@@ -64,6 +65,16 @@ def analyze():
 @app.route('/results')
 def results():
     return render_template('results.html')
+
+@app.route('/test_openai')
+def test_openai():
+    try:
+        prompt = "Hello, can you give me a short summary of what OpenAI does?"
+        response = send_openai_request(prompt)
+        return jsonify({"success": True, "response": response})
+    except Exception as e:
+        logger.error(f"Error in test_openai route: {str(e)}", exc_info=True)
+        return jsonify({"success": False, "error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

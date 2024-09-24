@@ -16,7 +16,7 @@ def send_openai_request(prompt: str) -> str:
     try:
         logger.info(f"Sending request to OpenAI API with prompt: {prompt[:100]}...")
         completion = openai_client.chat.completions.create(
-            model="gpt-4o", messages=[{"role": "user", "content": prompt}], max_tokens=500
+            model="gpt-4", messages=[{"role": "user", "content": prompt}], max_tokens=500
         )
         content = completion.choices[0].message.content
         if not content:

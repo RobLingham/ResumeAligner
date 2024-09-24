@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, url_for, redirect
+from flask import Flask, render_template, request, jsonify, url_for, redirect, abort
 from werkzeug.utils import secure_filename
 from utils.resume_parser import parse_resume
 from utils.job_description_parser import parse_job_description
@@ -15,12 +15,19 @@ app.config.from_object('config')
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
+# Check if OpenAI API key is set
+if not app.config.get('OPENAI_API_KEY'):
+    logger.error("OPENAI_API_KEY is not set in the environment variables")
+    raise ValueError("OPENAI_API_KEY is not set. Please set it in your environment variables.")
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
+    if request.method == 'POST':
+        return redirect(url_for('analyze'))
     return render_template('upload.html')
 
 @app.route('/analyze', methods=['POST'])
@@ -75,6 +82,10 @@ def test_openai():
     except Exception as e:
         logger.error(f"Error in test_openai route: {str(e)}", exc_info=True)
         return jsonify({"success": False, "error": str(e)}), 500
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

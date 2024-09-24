@@ -72,20 +72,32 @@ def analyze():
         logger.debug(f"Parsed job description (first 500 chars): {parsed_jd[:500]}...")
         
         logger.info("Analyzing alignment")
-        analysis_result = analyze_alignment(parsed_resume, parsed_jd)
-        
-        if not analysis_result:
-            logger.error("Failed to get analysis result from OpenAI")
+        try:
+            analysis_result = analyze_alignment(parsed_resume, parsed_jd)
+            
+            if not isinstance(analysis_result, dict):
+                raise ValueError("Invalid analysis result format")
+            
+            # Standardize the JSON structure
+            standardized_result = {
+                "alignment_score": analysis_result.get("Alignment Score") or analysis_result.get("score", 0),
+                "strengths": analysis_result.get("Strengths") or analysis_result.get("strengths", []),
+                "areas_for_improvement": analysis_result.get("Areas for Improvement") or analysis_result.get("improvements", []),
+                "interview_questions": analysis_result.get("Interview Preparation Questions") or analysis_result.get("interview_questions", []),
+                "explanation": analysis_result.get("Score Explanation") or analysis_result.get("explanation", "No explanation provided.")
+            }
+            
+            logger.info(f"Standardized analysis result: {json.dumps(standardized_result, indent=2)}")
+        except Exception as e:
+            logger.error(f"Error in analyze_alignment: {str(e)}")
             return jsonify({'error': 'Failed to analyze resume. Please try again later.'}), 500
 
-        logger.info(f"Analysis result: {json.dumps(analysis_result, indent=2)}")
-        
-        session['analysis_result'] = json.dumps(analysis_result)
+        session['analysis_result'] = json.dumps(standardized_result)
         logger.info("Analysis result stored in session")
         
         response_data = {
             'redirect': url_for('results'),
-            'analysis_result': analysis_result
+            'analysis_result': standardized_result
         }
         response = make_response(jsonify(response_data))
         response.headers['Content-Type'] = 'application/json'

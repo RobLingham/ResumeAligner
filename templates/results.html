@@ -9,11 +9,11 @@
                     <circle class="text-gray-300" stroke-width="5" stroke="currentColor" fill="transparent" r="58" cx="64" cy="64" />
                     <circle id="scoreCircle" class="text-green-500" stroke-width="5" stroke-dasharray="360" stroke-linecap="round" stroke="currentColor" fill="transparent" r="58" cx="64" cy="64" />
                 </svg>
-                <span id="scoreText" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold text-green-500"></span>
+                <span id="scoreText" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold text-green-500">{{ analysis_result.score }}%</span>
             </div>
         </div>
         <h2 class="text-2xl font-semibold text-center mb-2">Your Alignment Score</h2>
-        <p id="scoreExplanation" class="text-gray-600 text-center"></p>
+        <p id="scoreExplanation" class="text-gray-600 text-center">{{ analysis_result.explanation }}</p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-8">
@@ -24,7 +24,16 @@
                 </svg>
                 Strengths Identified
             </h3>
-            <ul id="strengthsList" class="space-y-2"></ul>
+            <ul id="strengthsList" class="space-y-2">
+                {% for strength in analysis_result.strengths %}
+                <li class="flex items-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-1 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span>{{ strength }}</span>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
 
         <div class="bg-white p-6 rounded-lg shadow-md">
@@ -34,7 +43,16 @@
                 </svg>
                 Areas for Improvement
             </h3>
-            <ul id="improvementsList" class="space-y-2"></ul>
+            <ul id="improvementsList" class="space-y-2">
+                {% for improvement in analysis_result.improvements %}
+                <li class="flex items-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 mr-2 mt-1 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                    </svg>
+                    <span>{{ improvement }}</span>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 
@@ -46,7 +64,13 @@
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
             </svg>
         </button>
-        <ul id="interviewQuestions" class="mt-4 space-y-4 hidden"></ul>
+        <ul id="interviewQuestions" class="mt-4 space-y-4 hidden">
+            {% for question in analysis_result.interview_questions %}
+            <li class="bg-gray-50 p-4 rounded-md">
+                <p class="font-medium">{{ question }}</p>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </div>
 {% endblock %}

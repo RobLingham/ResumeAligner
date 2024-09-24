@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, url_for, redirect, abort
+from flask import Flask, render_template, request, jsonify, url_for, redirect, abort, session
 from werkzeug.utils import secure_filename
 from utils.resume_parser import parse_resume
 from utils.job_description_parser import parse_job_description
@@ -10,6 +10,7 @@ import json
 
 app = Flask(__name__)
 app.config.from_object('config')
+app.secret_key = os.urandom(24)  # Add this line to set a secret key for the session
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -63,7 +64,11 @@ def analyze():
         analysis_result = analyze_alignment(parsed_resume, parsed_jd)
         
         logger.info(f"Analysis result: {json.dumps(analysis_result, indent=2)}")
-        return jsonify(analysis_result)
+        
+        # Store the analysis result in the session
+        session['analysis_result'] = analysis_result
+        
+        return redirect(url_for('results'))
     except Exception as e:
         logger.error(f"Error during analysis: {str(e)}", exc_info=True)
         error_response = {'error': 'An error occurred while analyzing the resume'}
@@ -72,7 +77,12 @@ def analyze():
 
 @app.route('/results')
 def results():
-    return render_template('results.html')
+    analysis_result = session.get('analysis_result')
+    if not analysis_result:
+        logger.error("No analysis result found in session")
+        return redirect(url_for('upload'))
+    logger.info(f"Rendering results template with analysis result: {json.dumps(analysis_result, indent=2)}")
+    return render_template('results.html', analysis_result=analysis_result)
 
 @app.route('/test_openai')
 def test_openai():

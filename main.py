@@ -82,6 +82,7 @@ def analyze():
         
         # Store the analysis result in the session
         session['analysis_result'] = json.dumps(analysis_result)
+        logger.info("Analysis result stored in session")
         
         response_data = {
             'redirect': url_for('results'),

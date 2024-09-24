@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Set score
-    const score = parseFloat(analysisResult.score || analysisResult['Alignment Score'] || 0);
+    const score = parseFloat(analysisResult.alignment_score || 0);
     console.log('Score:', score);
     if (isNaN(score)) {
         console.error('Invalid score:', score);
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     scoreCircle.style.strokeDashoffset = (100 - score) / 100 * 360;
 
     // Update strengths
-    const strengths = analysisResult.strengths || analysisResult['Strengths'] || [];
+    const strengths = analysisResult.strengths || [];
     console.log('Strengths:', strengths);
     if (Array.isArray(strengths) && strengths.length > 0) {
         strengthsList.innerHTML = strengths.map(strength => `
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Update improvements
-    const improvements = analysisResult.improvements || analysisResult['Areas for Improvement'] || [];
+    const improvements = analysisResult.areas_for_improvement || [];
     console.log('Improvements:', improvements);
     if (Array.isArray(improvements) && improvements.length > 0) {
         improvementsList.innerHTML = improvements.map(improvement => `
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Update interview questions
-    const questions = analysisResult.interview_questions || analysisResult['Interview Preparation Questions'] || [];
+    const questions = analysisResult.interview_preparation_questions || [];
     console.log('Interview Questions:', questions);
     if (Array.isArray(questions) && questions.length > 0) {
         interviewQuestions.innerHTML = questions.map(question => `
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Update score explanation
-    const explanation = analysisResult.explanation || analysisResult['Score Explanation'] || 'No explanation available';
+    const explanation = analysisResult.explanation_of_score || 'No explanation available';
     console.log('Score Explanation:', explanation);
     scoreExplanation.textContent = explanation;
 

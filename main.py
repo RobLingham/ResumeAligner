@@ -41,7 +41,7 @@ def analyze():
         if 'resume_file' in request.files:
             resume_file = request.files['resume_file']
             if resume_file.filename != '':
-                resume_content = resume_file.read()
+                resume_content = resume_file.read().decode('utf-8')
                 logger.info(f"Resume file received: {resume_file.filename}")
         else:
             resume_content = request.form.get('resume_text')

@@ -57,7 +57,7 @@ def analyze():
 
         if not resume_content:
             logger.error("Missing resume")
-            return jsonify({'error': 'Please provide a resume file or text.'}), 400
+            return jsonify({'error': 'Please provide a resume file or paste resume content.'}), 400
 
         if not job_description:
             logger.error("Missing job description")
@@ -93,7 +93,7 @@ def analyze():
 
     except Exception as e:
         logger.error(f"Error during analysis: {str(e)}", exc_info=True)
-        error_response = {'error': 'An error occurred while analyzing the resume. Please try again.'}
+        error_response = {'error': 'An unexpected error occurred while analyzing the resume. Please try again later.'}
         logger.error(f"Returning error response: {json.dumps(error_response, indent=2)}")
         return jsonify(error_response), 500
 

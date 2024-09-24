@@ -20,8 +20,15 @@ def analyze():
     resume_text = request.form.get('resume_text')
     job_description = request.form.get('job_description')
 
-    if not resume_text or not job_description:
-        return jsonify({'error': 'Missing resume or job description'}), 400
+    if not resume_text:
+        resume_file = request.files.get('resume_file')
+        if resume_file:
+            resume_text = resume_file.read().decode('utf-8')
+        else:
+            return jsonify({'error': 'Missing resume'}), 400
+
+    if not job_description:
+        return jsonify({'error': 'Missing job description'}), 400
 
     parsed_resume = parse_resume(resume_text)
     parsed_jd = parse_job_description(job_description)

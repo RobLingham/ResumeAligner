@@ -70,6 +70,10 @@ def analyze():
         logger.info("Analyzing alignment")
         analysis_result = analyze_alignment(parsed_resume, parsed_jd)
         
+        if not analysis_result:
+            logger.error("Failed to get analysis result from OpenAI")
+            return jsonify({'error': 'Failed to analyze resume. Please try again later.'}), 500
+
         logger.info(f"Analysis result: {json.dumps(analysis_result, indent=2)}")
         
         # Store the analysis result in the session

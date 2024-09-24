@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Set score color
+    // Set score
     const score = parseFloat(analysisResult.score || analysisResult['Alignment Score'] || 0);
     console.log('Score:', score);
     if (isNaN(score)) {

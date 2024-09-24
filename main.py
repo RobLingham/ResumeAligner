@@ -1,5 +1,5 @@
 import chardet
-from flask import Flask, render_template, request, jsonify, url_for, redirect, abort, session, make_response
+from flask import Flask, render_template, request, jsonify, url_for, redirect, abort, session, make_response, flash
 from werkzeug.utils import secure_filename
 from utils.resume_parser import parse_resume
 from utils.job_description_parser import parse_job_description
@@ -13,11 +13,9 @@ app = Flask(__name__)
 app.config.from_object('config')
 app.secret_key = os.urandom(24)
 
-# Configure logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Check if OpenAI API key is set
 if not app.config.get('OPENAI_API_KEY'):
     logger.error("OPENAI_API_KEY is not set in the environment variables")
     raise ValueError("OPENAI_API_KEY is not set. Please set it in your environment variables.")
@@ -30,7 +28,7 @@ def index():
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
-        logger.info("Redirecting to analyze page")
+        logger.info("POST request received, redirecting to analyze page")
         return redirect(url_for('analyze'))
     logger.info("Rendering upload page")
     return render_template('upload.html')
@@ -82,10 +80,8 @@ def analyze():
 
         logger.info(f"Analysis result: {json.dumps(analysis_result, indent=2)}")
         
-        # Store the analysis result in the session
         session['analysis_result'] = json.dumps(analysis_result)
         
-        # Return JSON response with redirect URL
         response_data = {
             'redirect': url_for('results'),
             'analysis_result': analysis_result
@@ -107,6 +103,7 @@ def results():
     analysis_result = session.get('analysis_result')
     if not analysis_result:
         logger.error("No analysis result found in session")
+        flash("No analysis result found. Please upload your resume and job description again.", "error")
         return redirect(url_for('upload'))
     
     try:
@@ -114,6 +111,7 @@ def results():
         logger.info(f"Loaded analysis result from session: {json.dumps(analysis_result, indent=2)}")
     except json.JSONDecodeError:
         logger.error("Failed to decode analysis result from session")
+        flash("An error occurred while loading the analysis result. Please try again.", "error")
         return redirect(url_for('upload'))
     
     return render_template('results.html', analysis_result=analysis_result)
@@ -133,6 +131,11 @@ def test_openai():
 def page_not_found(e):
     logger.error(f"404 error: {str(e)}")
     return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    logger.error(f"500 error: {str(e)}")
+    return render_template('500.html'), 500
 
 if __name__ == '__main__':
     logger.info("Starting Flask application")

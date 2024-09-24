@@ -51,7 +51,17 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        loadingIndicator.classList.remove('hidden');
+        loadingIndicator.style.display = 'flex';
+        loadingIndicator.style.alignItems = 'center';
+        loadingIndicator.style.justifyContent = 'center';
+        loadingIndicator.style.position = 'fixed';
+        loadingIndicator.style.top = '0';
+        loadingIndicator.style.left = '0';
+        loadingIndicator.style.width = '100%';
+        loadingIndicator.style.height = '100%';
+        loadingIndicator.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        loadingIndicator.style.zIndex = '9999';
+
         analyzeBtn.disabled = true;
 
         const formData = new FormData();
@@ -84,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error:', error);
             alert('An error occurred while analyzing the resume');
         } finally {
-            loadingIndicator.classList.add('hidden');
+            loadingIndicator.style.display = 'none';
             analyzeBtn.disabled = false;
         }
     });

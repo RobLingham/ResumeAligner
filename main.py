@@ -3,9 +3,14 @@ from utils.resume_parser import parse_resume
 from utils.job_description_parser import parse_job_description
 from utils.openai_analysis import analyze_alignment
 import os
+import logging
 
 app = Flask(__name__)
 app.config.from_object('config')
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 @app.route('/')
 def index():
@@ -18,6 +23,7 @@ def upload():
 @app.route('/analyze', methods=['POST'])
 def analyze():
     try:
+        logger.info("Received analyze request")
         resume_content = None
         job_description = request.form.get('job_description')
 
@@ -25,23 +31,29 @@ def analyze():
             resume_file = request.files['resume_file']
             if resume_file.filename != '':
                 resume_content = resume_file.read()
+                logger.info(f"Resume file received: {resume_file.filename}")
         else:
             resume_content = request.form.get('resume_text')
+            logger.info("Resume text received")
 
         if not resume_content:
+            logger.error("Missing resume")
             return jsonify({'error': 'Missing resume'}), 400
 
         if not job_description:
+            logger.error("Missing job description")
             return jsonify({'error': 'Missing job description'}), 400
 
         parsed_resume = parse_resume(resume_content)
         parsed_jd = parse_job_description(job_description)
         
+        logger.info("Analyzing alignment")
         analysis_result = analyze_alignment(parsed_resume, parsed_jd)
         
+        logger.info(f"Analysis result: {analysis_result}")
         return jsonify(analysis_result)
     except Exception as e:
-        app.logger.error(f"Error during analysis: {str(e)}")
+        logger.error(f"Error during analysis: {str(e)}", exc_info=True)
         return jsonify({'error': 'An error occurred while analyzing the resume'}), 500
 
 @app.route('/results')

@@ -1,6 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const analysisResult = JSON.parse(localStorage.getItem('analysisResult'));
+    console.log('Results page loaded');
+    let analysisResult;
+    try {
+        analysisResult = JSON.parse(localStorage.getItem('analysisResult'));
+        console.log('Analysis result:', analysisResult);
+    } catch (error) {
+        console.error('Error parsing analysis result:', error);
+        analysisResult = null;
+    }
+
     if (!analysisResult) {
+        console.error('No analysis result found');
         window.location.href = '/upload';
         return;
     }
@@ -55,4 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
         interviewQuestions.classList.toggle('hidden');
         toggleIcon.style.transform = interviewQuestions.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
     });
+
+    console.log('Results page fully loaded and populated');
 });

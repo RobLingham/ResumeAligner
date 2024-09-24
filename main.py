@@ -80,9 +80,8 @@ def analyze():
 
         logger.info(f"Analysis result: {json.dumps(analysis_result, indent=2)}")
         
-        # Store the analysis result in the session
         session['analysis_result'] = json.dumps(analysis_result)
-        logger.info(f"Analysis result stored in session: {json.dumps(analysis_result, indent=2)}")
+        logger.info("Analysis result stored in session")
         
         response_data = {
             'redirect': url_for('results'),

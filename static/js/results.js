@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (!analysisResult) {
         console.error('No analysis result found');
-        window.location.href = '/upload';
+        displayError('No analysis result found. Please try analyzing your resume again.');
         return;
     }
 
@@ -68,3 +68,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('Results page fully loaded and populated');
 });
+
+function displayError(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative';
+    errorDiv.role = 'alert';
+    errorDiv.innerHTML = `
+        <strong class="font-bold">Error!</strong>
+        <span class="block sm:inline">${message}</span>
+    `;
+    document.querySelector('main').prepend(errorDiv);
+}

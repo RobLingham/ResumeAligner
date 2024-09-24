@@ -23,11 +23,12 @@ def analyze_alignment(resume, job_description):
     """
 
     try:
+        logger.info("Sending request to OpenAI API")
         response = send_openai_request(prompt)
-        logger.info(f"OpenAI API response: {response}")
+        logger.info(f"Received response from OpenAI API: {response[:100]}...")
         
         analysis = json.loads(response)
-        logger.info(f"Parsed JSON: {analysis}")
+        logger.info(f"Successfully parsed JSON response: {json.dumps(analysis, indent=2)}")
 
         # Ensure all required fields are present and valid
         analysis['score'] = float(analysis.get('score', 0))
@@ -41,7 +42,7 @@ def analyze_alignment(resume, job_description):
             if not analysis[key]:
                 analysis[key] = ['No data available']
 
-        logger.info(f"Final analysis result: {analysis}")
+        logger.info(f"Final analysis result: {json.dumps(analysis, indent=2)}")
         return analysis
 
     except json.JSONDecodeError as e:
@@ -52,13 +53,15 @@ def analyze_alignment(resume, job_description):
     except KeyError as e:
         logger.error(f"Missing key in response: {str(e)}")
     except Exception as e:
-        logger.error(f"Unexpected error: {str(e)}")
+        logger.error(f"Unexpected error: {str(e)}", exc_info=True)
 
     # Return a default structure if there's an error
-    return {
+    error_response = {
         "score": 0,
         "strengths": ['Error processing data'],
         "improvements": ['Error processing data'],
         "interview_questions": ['Error processing data'],
         "explanation": "An error occurred while processing the analysis."
     }
+    logger.error(f"Returning error response: {json.dumps(error_response, indent=2)}")
+    return error_response

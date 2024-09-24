@@ -4,6 +4,7 @@ from utils.job_description_parser import parse_job_description
 from utils.openai_analysis import analyze_alignment
 import os
 import logging
+import json
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -52,11 +53,13 @@ def analyze():
         logger.info("Analyzing alignment")
         analysis_result = analyze_alignment(parsed_resume, parsed_jd)
         
-        logger.info(f"Analysis result: {analysis_result}")
+        logger.info(f"Analysis result: {json.dumps(analysis_result, indent=2)}")
         return jsonify(analysis_result)
     except Exception as e:
         logger.error(f"Error during analysis: {str(e)}", exc_info=True)
-        return jsonify({'error': 'An error occurred while analyzing the resume'}), 500
+        error_response = {'error': 'An error occurred while analyzing the resume'}
+        logger.error(f"Returning error response: {json.dumps(error_response, indent=2)}")
+        return jsonify(error_response), 500
 
 @app.route('/results')
 def results():

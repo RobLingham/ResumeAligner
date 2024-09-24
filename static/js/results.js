@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Update improvements
-    const improvements = analysisResult['areas For Improvement'] || analysisResult.improvements || [];
+    const improvements = analysisResult['areas For Improvement'] || analysisResult.improvements || analysisResult.areas_for_improvement || [];
     console.log('Improvements:', improvements);
     if (Array.isArray(improvements) && improvements.length > 0) {
         improvementsList.innerHTML = improvements.map(improvement => `
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Update interview questions
-    const questions = analysisResult['interview Preparation Questions'] || analysisResult.interview_questions || [];
+    const questions = analysisResult['interview Preparation Questions'] || analysisResult.interview_questions || analysisResult.interview_preparation_questions || [];
     console.log('Interview Questions:', questions);
     if (Array.isArray(questions) && questions.length > 0) {
         interviewQuestions.innerHTML = questions.map(question => `

@@ -27,6 +27,7 @@ def analyze_alignment(resume, job_description):
         response = send_openai_request(prompt)
         logger.info(f"Received response from OpenAI API: {response[:100]}...")
         
+        logger.info("Parsing JSON response")
         analysis = json.loads(response)
         logger.info(f"Successfully parsed JSON response: {json.dumps(analysis, indent=2)}")
 

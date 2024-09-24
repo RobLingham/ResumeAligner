@@ -4,6 +4,9 @@ from openai import OpenAI
 from tenacity import retry, stop_after_attempt, wait_random_exponential
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    raise ValueError("OPENAI_API_KEY environment variable is not set")
+
 openai_client = OpenAI(api_key=OPENAI_API_KEY)
 
 logger = logging.getLogger(__name__)

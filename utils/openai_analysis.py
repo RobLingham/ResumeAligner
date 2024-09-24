@@ -32,18 +32,12 @@ def analyze_alignment(resume, job_description):
         analysis = json.loads(response)
         logger.info(f"Successfully parsed JSON response: {json.dumps(analysis, indent=2)}")
 
-        # Ensure all required fields are present and valid
-        analysis['score'] = float(analysis.get('score', 0))
-        analysis['strengths'] = analysis.get('strengths', [])[:3]
-        analysis['improvements'] = analysis.get('improvements', [])[:3]
-        analysis['interview_questions'] = analysis.get('interview_questions', [])[:3]
+        # Validate and sanitize the response
+        analysis['score'] = max(0, min(100, float(analysis.get('score', 0))))
+        analysis['strengths'] = analysis.get('strengths', [])[:3] or ['No strengths identified']
+        analysis['improvements'] = analysis.get('improvements', [])[:3] or ['No improvements identified']
+        analysis['interview_questions'] = analysis.get('interview_questions', [])[:3] or ['No interview questions generated']
         analysis['explanation'] = analysis.get('explanation', 'No explanation provided.')
-
-        # Ensure lists have at least one item
-        for key in ['strengths', 'improvements', 'interview_questions']:
-            if not analysis[key]:
-                analysis[key] = ['No data available']
-                logger.warning(f"No {key} provided in the analysis, using default value")
 
         logger.info(f"Final analysis result: {json.dumps(analysis, indent=2)}")
         return analysis
@@ -51,20 +45,19 @@ def analyze_alignment(resume, job_description):
     except json.JSONDecodeError as e:
         logger.error(f"Error decoding JSON: {str(e)}")
         logger.error(f"Raw response: {response}")
+        return create_error_response("Invalid response format from AI model")
     except ValueError as e:
         logger.error(f"Error processing values: {str(e)}")
-    except KeyError as e:
-        logger.error(f"Missing key in response: {str(e)}")
+        return create_error_response("Error processing analysis values")
     except Exception as e:
         logger.error(f"Unexpected error: {str(e)}", exc_info=True)
+        return create_error_response("An unexpected error occurred during analysis")
 
-    # Return a default structure if there's an error
-    error_response = {
+def create_error_response(error_message):
+    return {
         "score": 0,
-        "strengths": ['Error processing data'],
-        "improvements": ['Error processing data'],
-        "interview_questions": ['Error processing data'],
-        "explanation": "An error occurred while processing the analysis."
+        "strengths": ["Error occurred during analysis"],
+        "improvements": ["Please try again later"],
+        "interview_questions": ["Unable to generate questions due to an error"],
+        "explanation": error_message
     }
-    logger.error(f"Returning error response: {json.dumps(error_response, indent=2)}")
-    return error_response

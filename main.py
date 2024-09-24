@@ -57,11 +57,11 @@ def analyze():
 
         if not resume_content:
             logger.error("Missing resume")
-            return jsonify({'error': 'Missing resume'}), 400
+            return jsonify({'error': 'Please provide a resume file or text.'}), 400
 
         if not job_description:
             logger.error("Missing job description")
-            return jsonify({'error': 'Missing job description'}), 400
+            return jsonify({'error': 'Please provide a job description.'}), 400
 
         logger.info("Parsing resume")
         parsed_resume = parse_resume(resume_content)

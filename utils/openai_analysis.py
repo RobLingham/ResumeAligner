@@ -23,8 +23,13 @@ def analyze_alignment(resume, job_description):
     
     try:
         analysis = json.loads(response)
-    except json.JSONDecodeError:
-        # If the response is not valid JSON, return a default structure
+        # Ensure the score is a valid number
+        if 'score' in analysis:
+            analysis['score'] = float(analysis['score'])
+        else:
+            analysis['score'] = 0
+    except (json.JSONDecodeError, ValueError):
+        # If the response is not valid JSON or score is not a number, return a default structure
         analysis = {
             "score": 0,
             "strengths": [],

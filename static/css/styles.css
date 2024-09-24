@@ -1,0 +1,20 @@
+/* Add any custom styles here */
+.strength-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+.strength-item svg {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.improvement-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+.improvement-item svg {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}

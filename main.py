@@ -82,7 +82,7 @@ def analyze():
         
         # Store the analysis result in the session
         session['analysis_result'] = json.dumps(analysis_result)
-        logger.info("Analysis result stored in session")
+        logger.info(f"Analysis result stored in session: {json.dumps(analysis_result, indent=2)}")
         
         response_data = {
             'redirect': url_for('results'),
@@ -111,8 +111,8 @@ def results():
     try:
         analysis_result = json.loads(analysis_result)
         logger.info(f"Loaded analysis result from session: {json.dumps(analysis_result, indent=2)}")
-    except json.JSONDecodeError:
-        logger.error("Failed to decode analysis result from session")
+    except json.JSONDecodeError as e:
+        logger.error(f"Failed to decode analysis result from session: {str(e)}")
         flash("An error occurred while loading the analysis result. Please try again.", "error")
         return redirect(url_for('upload'))
     

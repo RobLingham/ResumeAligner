@@ -12,17 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let analysisResult;
     try {
-        // Check if window.analysisResult is defined and not empty
         if (window.analysisResult && Object.keys(window.analysisResult).length > 0) {
             console.log('Raw analysis result:', window.analysisResult);
-            analysisResult = JSON.parse(JSON.stringify(window.analysisResult));
+            analysisResult = window.analysisResult;
             console.log('Parsed analysis result:', analysisResult);
         } else {
             throw new Error('Analysis result is undefined or empty');
         }
     } catch (error) {
         console.error('Error parsing analysis result:', error);
-        console.error('Raw window.analysisResult:', window.analysisResult);
         displayError('Failed to load analysis result. Please try again.');
         return;
     }

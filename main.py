@@ -1,3 +1,4 @@
+import chardet
 from flask import Flask, render_template, request, jsonify, url_for, redirect, abort, session, make_response
 from werkzeug.utils import secure_filename
 from utils.resume_parser import parse_resume
@@ -41,8 +42,14 @@ def analyze():
         if 'resume_file' in request.files:
             resume_file = request.files['resume_file']
             if resume_file.filename != '':
-                resume_content = resume_file.read().decode('utf-8')
-                logger.info(f"Resume file received: {resume_file.filename}")
+                try:
+                    resume_content_bytes = resume_file.read()
+                    detected_encoding = chardet.detect(resume_content_bytes)['encoding']
+                    resume_content = resume_content_bytes.decode(detected_encoding or 'utf-8', errors='replace')
+                    logger.info(f"Resume file received and decoded: {resume_file.filename}")
+                except Exception as e:
+                    logger.error(f"Error decoding resume file: {str(e)}")
+                    return jsonify({'error': 'Unable to read the resume file. Please ensure it is a valid text or PDF file.'}), 400
         else:
             resume_content = request.form.get('resume_text')
             logger.info("Resume text received")
@@ -78,7 +85,7 @@ def analyze():
 
     except Exception as e:
         logger.error(f"Error during analysis: {str(e)}", exc_info=True)
-        error_response = {'error': 'An error occurred while analyzing the resume'}
+        error_response = {'error': 'An error occurred while analyzing the resume. Please try again.'}
         logger.error(f"Returning error response: {json.dumps(error_response, indent=2)}")
         return jsonify(error_response), 500
 

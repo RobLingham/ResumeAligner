@@ -64,8 +64,11 @@ def analyze():
 
         logger.info("Parsing resume")
         parsed_resume = parse_resume(resume_content)
+        logger.info(f"Parsed resume: {parsed_resume[:500]}...")  # Log the first 500 characters of the parsed resume
+
         logger.info("Parsing job description")
         parsed_jd = parse_job_description(job_description)
+        logger.info(f"Parsed job description: {parsed_jd[:500]}...")  # Log the first 500 characters of the parsed job description
         
         logger.info("Analyzing alignment")
         analysis_result = analyze_alignment(parsed_resume, parsed_jd)

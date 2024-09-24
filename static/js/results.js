@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggleQuestionsBtn = document.getElementById('toggleQuestionsBtn');
     const toggleIcon = document.getElementById('toggleIcon');
 
+    // Log the entire analysis result
+    console.log('Analysis Result:', JSON.parse(JSON.stringify(window.analysisResult)));
+
     // Set score color
     const score = parseFloat(scoreText.textContent);
     console.log('Score:', score);
@@ -18,9 +21,35 @@ document.addEventListener('DOMContentLoaded', function() {
     scoreCircle.className = scoreColor;
     scoreCircle.style.strokeDashoffset = (100 - score) / 100 * 360;
 
-    console.log('Strengths:', strengthsList.innerHTML);
-    console.log('Improvements:', improvementsList.innerHTML);
-    console.log('Interview Questions:', interviewQuestions.innerHTML);
+    // Log strengths
+    console.log('Strengths:', window.analysisResult.strengths);
+    strengthsList.innerHTML = window.analysisResult.strengths.map(strength => `
+        <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-1 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>${strength}</span>
+        </li>
+    `).join('');
+
+    // Log improvements
+    console.log('Improvements:', window.analysisResult.improvements);
+    improvementsList.innerHTML = window.analysisResult.improvements.map(improvement => `
+        <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 mr-2 mt-1 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+            </svg>
+            <span>${improvement}</span>
+        </li>
+    `).join('');
+
+    // Log interview questions
+    console.log('Interview Questions:', window.analysisResult.interview_questions);
+    interviewQuestions.innerHTML = window.analysisResult.interview_questions.map(question => `
+        <li class="bg-gray-50 p-4 rounded-md">
+            <p class="font-medium">${question}</p>
+        </li>
+    `).join('');
 
     // Toggle interview questions visibility
     toggleQuestionsBtn.addEventListener('click', () => {

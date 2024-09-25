@@ -65,11 +65,11 @@ def analyze():
 
         logger.info("Parsing resume")
         parsed_resume = parse_resume(resume_content)
-        logger.debug(f"Parsed resume (first 500 chars): {parsed_resume[:500]}...")
+        logger.debug(f"Parsed resume (first 200 chars): {parsed_resume[:200]}...")
 
         logger.info("Parsing job description")
         parsed_jd = parse_job_description(job_description)
-        logger.debug(f"Parsed job description (first 500 chars): {parsed_jd[:500]}...")
+        logger.debug(f"Parsed job description (first 200 chars): {parsed_jd[:200]}...")
         
         logger.info("Analyzing alignment")
         analysis_result = analyze_alignment(parsed_resume, parsed_jd)
@@ -78,8 +78,6 @@ def analyze():
         
         session['analysis_result'] = json.dumps(analysis_result)
         logger.info("Analysis result stored in session")
-        
-        logger.debug(f"Session contents after storing analysis result: {session}")
         
         response_data = {
             'redirect': url_for('results'),

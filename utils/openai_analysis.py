@@ -23,28 +23,28 @@ def analyze_alignment(resume, job_description):
     5. A brief explanation of the score
     """
 
-    logger.info("Sending request to OpenAI API")
-    response = send_openai_request(prompt)
-    logger.info(f"Received response from OpenAI API: {response}")
-
     try:
+        logger.info("Sending request to OpenAI API")
+        response = send_openai_request(prompt)
+        logger.info("Received response from OpenAI API")
+        
         # Parse the JSON response
         analysis_result = eval(response)
         
         # Standardize the result structure
         standardized_result = {
-            "alignment_score": float(analysis_result.get("score", 0)),
-            "strengths": analysis_result.get("strengths", [])[:3],
-            "areas_for_improvement": analysis_result.get("areas For Improvement", [])[:3],
-            "interview_questions": analysis_result.get("interview Preparation Questions", [])[:3],
-            "explanation": analysis_result.get("explanation", "No explanation provided.")
+            "alignment_score": float(analysis_result.get("Alignment Score", 0)),
+            "strengths": analysis_result.get("Strengths", [])[:3],
+            "areas_for_improvement": analysis_result.get("Areas for Improvement", [])[:3],
+            "interview_questions": analysis_result.get("Interview Preparation Questions", [])[:3],
+            "explanation": analysis_result.get("Score Explanation", "No explanation provided.")
         }
 
-        logger.info(f"Standardized analysis result: {standardized_result}")
+        logger.info("Analysis completed successfully")
         return standardized_result
 
     except Exception as e:
-        logger.error(f"Error parsing OpenAI response: {str(e)}")
+        logger.error(f"Error during alignment analysis: {str(e)}", exc_info=True)
         return {
             "alignment_score": 0,
             "strengths": [],

@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.analysisResult && Object.keys(window.analysisResult).length > 0) {
             console.log('Raw analysis result:', window.analysisResult);
             analysisResult = window.analysisResult;
-            console.log('Parsed analysis result:', analysisResult);
         } else {
             throw new Error('Analysis result is undefined or empty');
         }
@@ -31,9 +30,22 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
+    // Parse analysis result
+    const score = parseFloat(analysisResult.alignment_score || analysisResult.score || 0);
+    const strengths = analysisResult.strengths || [];
+    const improvements = analysisResult.areas_for_improvement || analysisResult['areas For Improvement'] || [];
+    const questions = analysisResult.interview_questions || analysisResult['interview Preparation Questions'] || [];
+    const explanation = analysisResult.explanation || analysisResult.explanation_of_score || 'No explanation available';
+
+    console.log('Parsed analysis result:', {
+        score,
+        strengths,
+        improvements,
+        questions,
+        explanation
+    });
+
     // Set score
-    const score = parseFloat(analysisResult.score || analysisResult.alignment_score || 0);
-    console.log('Score:', score);
     if (isNaN(score)) {
         console.error('Invalid score:', score);
         displayError('Invalid score. Please try again.');
@@ -47,8 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
     scoreCircle.style.strokeDashoffset = (100 - score) / 100 * 360;
 
     // Update strengths
-    const strengths = analysisResult.strengths || [];
-    console.log('Strengths:', strengths);
     if (Array.isArray(strengths) && strengths.length > 0) {
         strengthsList.innerHTML = strengths.map(strength => `
             <li class="flex items-start">
@@ -59,13 +69,11 @@ document.addEventListener('DOMContentLoaded', function() {
             </li>
         `).join('');
     } else {
-        console.error('Invalid strengths:', strengths);
-        strengthsList.innerHTML = '<li>No strengths available</li>';
+        console.warn('No strengths available');
+        strengthsList.innerHTML = '<li>No specific strengths identified.</li>';
     }
 
     // Update improvements
-    const improvements = analysisResult['areas For Improvement'] || analysisResult.improvements || analysisResult.areas_for_improvement || [];
-    console.log('Improvements:', improvements);
     if (Array.isArray(improvements) && improvements.length > 0) {
         improvementsList.innerHTML = improvements.map(improvement => `
             <li class="flex items-start">
@@ -76,13 +84,11 @@ document.addEventListener('DOMContentLoaded', function() {
             </li>
         `).join('');
     } else {
-        console.error('Invalid improvements:', improvements);
-        improvementsList.innerHTML = '<li>No improvements available</li>';
+        console.warn('No improvements available');
+        improvementsList.innerHTML = '<li>No specific areas for improvement identified.</li>';
     }
 
     // Update interview questions
-    const questions = analysisResult['interview Preparation Questions'] || analysisResult.interview_questions || analysisResult.interview_preparation_questions || [];
-    console.log('Interview Questions:', questions);
     if (Array.isArray(questions) && questions.length > 0) {
         interviewQuestions.innerHTML = questions.map(question => `
             <li class="bg-gray-50 p-4 rounded-md">
@@ -90,13 +96,11 @@ document.addEventListener('DOMContentLoaded', function() {
             </li>
         `).join('');
     } else {
-        console.error('Invalid interview questions:', questions);
-        interviewQuestions.innerHTML = '<li>No interview questions available</li>';
+        console.warn('No interview questions available');
+        interviewQuestions.innerHTML = '<li>No specific interview questions generated.</li>';
     }
 
     // Update score explanation
-    const explanation = analysisResult.explanation || analysisResult.explanation_of_score || 'No explanation available';
-    console.log('Score Explanation:', explanation);
     scoreExplanation.textContent = explanation;
 
     // Toggle interview questions visibility

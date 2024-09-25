@@ -79,7 +79,6 @@ def analyze():
         session['analysis_result'] = json.dumps(analysis_result)
         logger.info("Analysis result stored in session")
         
-        # Add additional logging to verify the session storage
         logger.debug(f"Session contents after storing analysis result: {session}")
         
         response_data = {

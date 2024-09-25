@@ -1,0 +1,134 @@
+2024-09-25 01:09:37,568 - __main__ - INFO - Starting Flask application
+ * Serving Flask app 'main'
+ * Debug mode: on
+2024-09-25 01:09:37,581 - werkzeug - INFO - WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.31.196.55:5000
+2024-09-25 01:09:37,581 - werkzeug - INFO - Press CTRL+C to quit
+2024-09-25 01:09:37,581 - werkzeug - INFO -  * Restarting with stat
+2024-09-25 01:09:38,201 - __main__ - INFO - Starting Flask application
+2024-09-25 01:09:38,210 - werkzeug - WARNING -  * Debugger is active!
+2024-09-25 01:09:38,211 - werkzeug - INFO -  * Debugger PIN: 532-125-516
+2024-09-25 01:09:38,278 - __main__ - INFO - Rendering index page
+2024-09-25 01:09:38,284 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:09:38] "GET / HTTP/1.1" 200 -
+2024-09-25 01:09:38,299 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:09:38] "GET /static/css/styles.css HTTP/1.1" 200 -
+2024-09-25 01:09:38,311 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:09:38] "GET /static/img/resume_analysis.svg HTTP/1.1" 200 -
+2024-09-25 01:09:39,198 - __main__ - INFO - Rendering index page
+2024-09-25 01:09:39,198 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:09:39] "GET / HTTP/1.1" 200 -
+2024-09-25 01:09:39,316 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:09:39] "GET /static/css/styles.css HTTP/1.1" 304 -
+2024-09-25 01:09:39,318 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:09:39] "GET /static/img/resume_analysis.svg HTTP/1.1" 304 -
+2024-09-25 01:09:49,449 - __main__ - INFO - Rendering index page
+2024-09-25 01:09:49,449 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:09:49] "GET / HTTP/1.1" 200 -
+2024-09-25 01:09:49,518 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:09:49] "GET /static/css/styles.css HTTP/1.1" 304 -
+2024-09-25 01:09:49,639 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:09:49] "GET /static/img/resume_analysis.svg HTTP/1.1" 304 -
+2024-09-25 01:10:19,655 - __main__ - INFO - Rendering index page
+2024-09-25 01:10:19,655 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:19] "GET / HTTP/1.1" 200 -
+2024-09-25 01:10:19,665 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:19] "GET /static/css/styles.css HTTP/1.1" 200 -
+2024-09-25 01:10:19,671 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:19] "GET /static/img/resume_analysis.svg HTTP/1.1" 200 -
+2024-09-25 01:10:32,549 - __main__ - INFO - Rendering index page
+2024-09-25 01:10:32,550 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:32] "GET / HTTP/1.1" 200 -
+2024-09-25 01:10:32,630 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:32] "GET /static/img/resume_analysis.svg HTTP/1.1" 304 -
+2024-09-25 01:10:32,630 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:32] "GET /static/css/styles.css HTTP/1.1" 304 -
+2024-09-25 01:10:49,027 - __main__ - INFO - Rendering index page
+2024-09-25 01:10:49,028 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:49] "GET / HTTP/1.1" 200 -
+2024-09-25 01:10:49,115 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:49] "GET /static/img/resume_analysis.svg HTTP/1.1" 304 -
+2024-09-25 01:10:49,116 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:49] "GET /static/css/styles.css HTTP/1.1" 304 -
+2024-09-25 01:10:50,204 - __main__ - INFO - Rendering upload page
+2024-09-25 01:10:50,208 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:50] "GET /upload HTTP/1.1" 200 -
+2024-09-25 01:10:50,284 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:50] "GET /static/css/styles.css HTTP/1.1" 304 -
+2024-09-25 01:10:50,292 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:50] "GET /static/js/upload.js HTTP/1.1" 304 -
+2024-09-25 01:10:51,356 - __main__ - INFO - Rendering index page
+2024-09-25 01:10:51,356 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:51] "GET / HTTP/1.1" 200 -
+2024-09-25 01:10:51,444 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:51] "GET /static/css/styles.css HTTP/1.1" 304 -
+2024-09-25 01:10:51,445 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:51] "GET /static/img/resume_analysis.svg HTTP/1.1" 304 -
+2024-09-25 01:10:52,384 - __main__ - INFO - Rendering upload page
+2024-09-25 01:10:52,384 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:52] "GET /upload HTTP/1.1" 200 -
+2024-09-25 01:10:52,465 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:52] "GET /static/css/styles.css HTTP/1.1" 304 -
+2024-09-25 01:10:52,465 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:10:52] "GET /static/js/upload.js HTTP/1.1" 304 -
+2024-09-25 01:11:22,165 - __main__ - INFO - Received POST request to /analyze
+2024-09-25 01:11:22,166 - __main__ - INFO - Resume text received
+2024-09-25 01:11:22,166 - __main__ - INFO - Parsing resume
+2024-09-25 01:11:22,166 - __main__ - DEBUG - Parsed resume (first 500 chars):  Robert Lingham
+Asheville, North Carolina PH# (248) 249 - 1952 RobertwLingham@gmail.com Linkedin / Website / Github
+I’ve evolved my recruiting career from agency work to business partner, and I’ve successfully translated that experience from working with internal hiring managers and candidates to now partnering with development teams and external customers. I’ve always been customer-focused—whether it was understanding candidate needs or now helping clients solve complex problems with AI recru...
+2024-09-25 01:11:22,166 - __main__ - INFO - Parsing job description
+2024-09-25 01:11:22,166 - __main__ - DEBUG - Parsed job description (first 500 chars): Member of Success Staff
+About Tezi
+Tezi is building an Autonomous AI trained by top hiring managers and recruiters to lead the end-to-end recruiting process. Our AI proactively sources, screens applications, schedules interviews, collects scorecards, and never drops the ball. We believe in saving the uniquely human work (selling, evaluating, and closing) for the humans and leveraging AI for the rest.
+
+How we work
+Meticulously designed: A founding team that has collectively hired 1,000+ empl...
+2024-09-25 01:11:22,166 - __main__ - INFO - Analyzing alignment
+2024-09-25 01:11:22,166 - utils.openai_analysis - INFO - Starting alignment analysis
+2024-09-25 01:11:22,166 - utils.openai_analysis - INFO - Sending request to OpenAI API
+2024-09-25 01:11:22,166 - openai_chat_completion.chat_request - INFO - Sending request to OpenAI API with prompt: 
+    Analyze the alignment between the following resume and job description:
+
+    Resume:
+     Rober...
+2024-09-25 01:11:22,169 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'user', 'content': '\n    Analyze the alignment between the following resume and job description:\n\n    Resume:\n     Robert Lingham\r\nAsheville, North Carolina PH# (248) 249 - 1952 RobertwLingham@gmail.com Linkedin / Website / Github\r\nI’ve evolved my recruiting career from agency work to business partner, and I’ve successfully translated that experience from working with internal hiring managers and candidates to now partnering with development teams and external customers. I’ve always been customer-focused—whether it was understanding candidate needs or now helping clients solve complex problems with AI recruiting tools. My passion lies in bridging the gap between technical solutions and customer success, leveraging AI and automation to create seamless, scalable processes.\r\nSpeak_ (Seed Stage AI Recruiting Tech Company)\r\nProduct + Growth March 2024 - Present\r\n● Led all product demos and simulations for customers, advisors, investors, and VC groups, tailoring each presentation to match client needs, resulting in a 90%+ success rate in customer validation.\r\n● Developed and implemented AI-driven features like automatic signal generation, reducing customer friction and increasing platform usability. Collaborated closely with the development team on design, prototyping, and testing.\r\n● Integrated ATS systems (Lever, Workable) based on customer feedback, ensuring seamless data syncing, creating security documentation, and defining necessary endpoints.\r\n● Resolved complex technical issues, such as ATS sync problems, reducing customer support tickets and improving system reliability.\r\n● Created comprehensive internal and external documentation, including knowledge bases, FAQs, and training materials, to streamline support processes and reduce customer inquiries, particularly around data privacy and usage.\r\n● Acted as the main point of contact for all customer accounts, driving success through personalized onboarding, continuous training, and proactive communication via dedicated Slack channels.\r\n● Proactively identified and resolved issues, such as fixing a candidate scoring timeout problem before the customer noticed, ensuring a seamless user experience across different time zones.\r\n● Collaborated with sales, finance, and development teams to optimize pricing models, and implemented a product-led growth approach that enhanced onboarding and customer conversion rates.\r\n● Implemented Intercom to guide new users and collect inquiries via chatbots, reducing direct support needs and improving self-service capabilities.\r\n● Expanded the book of business from $0 to $75k ARR by aligning product offerings with customer needs and effectively managing account health.\r\n     \r\n ProAmpac (Global Flexible Packaging Company, 5,000 Employees)\r\nTalent Acquisition Business Partner\r\nApril 2023 - March 2024 (15% reduction in force)\r\n● Responsible for hiring across GTM, Technical, G&A, Product, Operations, Manufacturing, and R&D functions for North America and Europe using ADP RM as ATS.\r\n● Achieved a 93% offer acceptance rate and an average of 35 days to fill.\r\n● Managed and mentored a Talent Coordinator, enhancing the onboarding process and supporting\r\nvirtual I-9 paperwork for new hires.\r\n● Led a cross-functional team of 10 HR professionals globally to assess and select the optimal ATS\r\nvendor.\r\n● Spearheaded the transition from ADP to UKG recruiting module, streamlining recruitment\r\nprocesses, workflows, and templates.\r\n● Established a talent inquiry management system, reducing response times and boosting\r\nstakeholder satisfaction through a leadership-endorsed SLA.\r\nLever (B2B ATS SaaS Platform, 250 Employees)\r\nSenior Recruiter\r\nMarch 2022 - November 2022 (company acquired, laid off)\r\n● Hired for roles across GTM, Technical, G&A, Product Management, and Operations using Lever ATS, achieving an 85% offer acceptance rate with an average of 38 days to fill.\r\n● Partnered with Black in Technology to diversify the candidate pipeline and increase diversity in technical and non-technical roles.\r\n● Trained an 8-member recruiting team in Lever ATS, improving proficiency by 60% and streamlining hiring processes.\r\n● Directed recruiting best practices sessions for Customer Success new hires, increasing platform comfort by 129%.\r\n● Initiated post-hire feedback collection from Hiring Managers using Lattice, driving continuous improvements in recruitment processes.\r\nHomeX + Schedule Engine (B2B/B2C SaaS Platform, 250 Employees)\r\nSenior Recruiter\r\nJuly 2021 - February 2022 (30% reduction in force)\r\n● Recruited talent across GTM, G&A, Technical, Operations, and Design, achieving an 88% offer acceptance rate with an average of 32 days to fill.\r\n● Reduced agency spend by $10,000+ as the primary point of contact for all external recruiting agencies.\r\n● Championed inclusivity by integrating preferred pronoun collection during the application process, increasing diversity in candidate selection.\r\n● Developed “HomeX University” for internal mobility and introduced 30-60-90 day onboarding touchpoints to support new hires.\r\n● Implemented “HomeX Cares,” an employee relief fund to provide additional support for employees in need.\r\nUnified Business Technology (Government Contractor, 500 Employees)\r\nSenior Corporate Recruiter December 2020 - July 2021\r\n\r\n ● Hired across Technology, Professional Services, and Sales using BrightMoves ATS, supporting a high-volume project that required 60+ hires within 60 days.\r\n● Authored the "UBT Recruiter Playbook" to standardize recruitment practices and enhance new hire effectiveness.\r\n● Reduced time-to-fill by 15 days by identifying and utilizing new recruiting channels.\r\n● Developed and implemented a new workflow for the onboarding process, significantly improving\r\nnew hire satisfaction and integration.\r\n● Introduced a candidate feedback system to continuously improve the recruitment process.\r\nRecruiting Agency Experience\r\nFull Desk Recruiter September 2017 - June 2020\r\n● Recruited across IT and Engineering verticals using various ATS systems for positions in Technical, Design, G&A, Operations, GTM, Executive Leadership, and Product/Project Management.\r\n\n\n    Job Description:\n    Member of Success Staff\r\nAbout Tezi\r\nTezi is building an Autonomous AI trained by top hiring managers and recruiters to lead the end-to-end recruiting process. Our AI proactively sources, screens applications, schedules interviews, collects scorecards, and never drops the ball. We believe in saving the uniquely human work (selling, evaluating, and closing) for the humans and leveraging AI for the rest.\r\n\r\nHow we work\r\nMeticulously designed: A founding team that has collectively hired 1,000+ employees designed every interaction along the hiring journey.\r\nCommitted to calm: We work smart and hard, but chaos, thrash, and drama are inefficient and slow.\r\nWe’re all grown-ups. We like to operate in a culture of trust, freedom, responsibility, and autonomy. That requires us to act like mature, wise adults in all matters.\r\nJudgment over process: We don’t have the time and can’t afford unnecessary processes. Less process is better unless it helps us build faster.\r\nThe best ideas win: We encourage critical thinking, dissent, and candor. The right answer needs to win out over whoever’s just loud, vocal, powerful, or charming.\r\nAbout the role\r\nAs a Customer Success Manager at Tezi, you will be an integral part of our team. Your role is to ensure that our customers have an exceptional experience with Max, our AI recruiter, and ultimately make the high-quality hires they seek. You will work closely with our founders, engineers, and designers to understand customer needs, propose solutions proactively, resolve challenges, and contribute to the continuous improvement of our product.\r\n\r\nResponsibilities\r\nOwn the post-sale customer experience and customer retention, constantly looking for ways to improve approaches and streamline work, and developing data-informed ideas that define the strategy and direction of the team.\r\nProvide top-notch advice and help to our customers, addressing their inquiries and issues promptly and effectively.\r\nThink ahead strategically about how customers can best achieve their hiring goals, while proposing approaches that will work for them and Tezi.\r\nCollaborate with the founders, Design, and Engineering to identify and prioritize user feedback and feature requests.\r\nDefine, create, and deploy user documentation and training materials.\r\nConduct user training sessions and webinars to help users get the most out of Tezi\'s solutions.\r\nMonitor user engagement and satisfaction and proactively identify opportunities to enhance the user experience.\r\nAct as a liaison between users and internal teams to ensure clear communication and alignment on user needs and priorities.\r\nBuild empathy and customer understanding internally by aggregating and socializing themes from customer conversations.\r\nRequirements\r\n8+ years of Customer Success, Sales, or Support experience\r\nExcellent communication skills, both written and verbal, with a track record of making persuasive arguments and closing deals\r\nWillingness to roll up your sleeves and figure things out by doing\r\nStrong problem-solving skills and the ability to think critically and analytically from first principles\r\nWillingness and experience working in a fast-paced, high-intensity environment (not unlike most early-stage startups)\r\nAbility to work effectively in a (mostly) remote work environment and collaborate with cross-functional teams\r\nExperience or familiarity with AI tools by using them in a Success team workflow\r\nWillingness to travel and work in person roughly one week out of every eight, typically in the SF Bay Area\r\nIf you are living in the United States currently, you do not require visa sponsorship\r\nIf you are living outside the United States, you are willing to overlap with 9am-12pm Pacific Time on Mondays through Fridays\r\nNice to have\r\nRecruiting experience as an in-house or agency recruiter\r\nExperience as a hiring manager hiring people onto your own team\r\nExperience working at a recruiting tech or HR tech SaaS company\r\n\n\n    Provide the following in JSON format:\n    1. An alignment score (0-100)\n    2. A list of strengths (maximum 3)\n    3. A list of areas for improvement (maximum 3)\n    4. A list of interview preparation questions (maximum 3)\n    5. A brief explanation of the score\n    '}], 'model': 'gpt-4', 'max_tokens': 500}}
+2024-09-25 01:11:22,234 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2024-09-25 01:11:22,235 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=5.0 socket_options=None
+2024-09-25 01:11:22,237 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7f9dd34cb950>
+2024-09-25 01:11:22,237 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x7f9dd36fd2e0> server_hostname='api.openai.com' timeout=5.0
+2024-09-25 01:11:22,265 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7f9dd350dc10>
+2024-09-25 01:11:22,265 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2024-09-25 01:11:22,265 - httpcore.http11 - DEBUG - send_request_headers.complete
+2024-09-25 01:11:22,265 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2024-09-25 01:11:22,265 - httpcore.http11 - DEBUG - send_request_body.complete
+2024-09-25 01:11:22,265 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2024-09-25 01:11:43,357 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 25 Sep 2024 01:11:43 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'access-control-expose-headers', b'X-Request-ID'), (b'openai-organization', b'user-tfcgocuhgouj1yj0vsypm9qd'), (b'openai-processing-ms', b'20969'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-ratelimit-limit-requests', b'10000'), (b'x-ratelimit-limit-tokens', b'10000'), (b'x-ratelimit-remaining-requests', b'9999'), (b'x-ratelimit-remaining-tokens', b'6881'), (b'x-ratelimit-reset-requests', b'8.64s'), (b'x-ratelimit-reset-tokens', b'18.714s'), (b'x-request-id', b'req_78c436f7b8466f19686d33a3cdbc1451'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=5afMURzvJUX7inyJZNqbn0cwxqWSIL6AtDB2i25yKho-1727226703-1.0.1.1-SUCFbyK6ne7Z2wHSbVVxN1gXG7ZJbxERZGwf13pQeK44vwowfdWXHMiRu8T3nfqZfwxily9CtHG96ik96Q.Xdw; path=/; expires=Wed, 25-Sep-24 01:41:43 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'X-Content-Type-Options', b'nosniff'), (b'Set-Cookie', b'_cfuvid=xFot_K_fZFWGHHyZokkZ_o6RDLQVbeaSNmIIcvSIj9c-1727226703350-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'8c8723cc3eff1187-ORD'), (b'Content-Encoding', b'gzip')])
+2024-09-25 01:11:43,358 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-09-25 01:11:43,358 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2024-09-25 01:11:43,358 - httpcore.http11 - DEBUG - receive_response_body.complete
+2024-09-25 01:11:43,358 - httpcore.http11 - DEBUG - response_closed.started
+2024-09-25 01:11:43,359 - httpcore.http11 - DEBUG - response_closed.complete
+2024-09-25 01:11:43,359 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Wed, 25 Sep 2024 01:11:43 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('access-control-expose-headers', 'X-Request-ID'), ('openai-organization', 'user-tfcgocuhgouj1yj0vsypm9qd'), ('openai-processing-ms', '20969'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=31536000; includeSubDomains; preload'), ('x-ratelimit-limit-requests', '10000'), ('x-ratelimit-limit-tokens', '10000'), ('x-ratelimit-remaining-requests', '9999'), ('x-ratelimit-remaining-tokens', '6881'), ('x-ratelimit-reset-requests', '8.64s'), ('x-ratelimit-reset-tokens', '18.714s'), ('x-request-id', 'req_78c436f7b8466f19686d33a3cdbc1451'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=5afMURzvJUX7inyJZNqbn0cwxqWSIL6AtDB2i25yKho-1727226703-1.0.1.1-SUCFbyK6ne7Z2wHSbVVxN1gXG7ZJbxERZGwf13pQeK44vwowfdWXHMiRu8T3nfqZfwxily9CtHG96ik96Q.Xdw; path=/; expires=Wed, 25-Sep-24 01:41:43 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('x-content-type-options', 'nosniff'), ('set-cookie', '_cfuvid=xFot_K_fZFWGHHyZokkZ_o6RDLQVbeaSNmIIcvSIj9c-1727226703350-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '8c8723cc3eff1187-ORD'), ('content-encoding', 'gzip')])
+2024-09-25 01:11:43,359 - openai._base_client - DEBUG - request_id: req_78c436f7b8466f19686d33a3cdbc1451
+2024-09-25 01:11:43,361 - openai_chat_completion.chat_request - INFO - Received response from OpenAI API: {
+    "Alignment Score": 92,
+    "Strengths": [
+        "Robert has extensive experience in recruiti...
+2024-09-25 01:11:43,361 - utils.openai_analysis - INFO - Received response from OpenAI API: {
+    "Alignment Score": 92,
+    "Strengths": [
+        "Robert has extensive experience in recruiting, customer success, and AI-driven hiring tools, aligning with the company's core business.",
+        "He has 8+ years of experience in roles that involved Customer Success, Sales, or Support, in line with the job requirements.",
+        "Experience working remotely and in fast-paced environments, which matches the Tezi work culture."
+    ],
+    "Areas for Improvement": [
+        "It is unclear if Robert is comfortable with periodic travel as required by the job description.",
+        "There is no direct evidence of making persuasive arguments and closing deals as mentioned in the job description.",
+        "Experience or familiarity with AI tools in a Success team workflow isn't explicitly mentioned, which could be a requirement."
+    ],
+    "Interview Preparation Questions": [
+        "Can you provide examples of when you used persuasive arguments to close deals?",
+        "Can you share any experience with the usage of AI tools in a Success team workflow?",
+        "Are you comfortable with the travel requirements and the need to occasionally work in-person in the SF Bay Area?"
+    ],
+    "Score Explanation": "The candidate's profile matches very well with the job requirements. Extensive experience in recruiting, customer support and AI gives him an edge. The score of 92 signifies that the resume is highly aligned with the job description, but there are a few areas where the candidate's suitability isn't explicitly clear and would benefit from further clarification in an interview scenario."
+}
+2024-09-25 01:11:43,361 - utils.openai_analysis - INFO - Standardized analysis result: {'alignment_score': 0.0, 'strengths': [], 'areas_for_improvement': [], 'interview_questions': [], 'explanation': 'No explanation provided.'}
+2024-09-25 01:11:43,361 - __main__ - INFO - Analysis result: {
+  "alignment_score": 0.0,
+  "strengths": [],
+  "areas_for_improvement": [],
+  "interview_questions": [],
+  "explanation": "No explanation provided."
+}
+2024-09-25 01:11:43,361 - __main__ - INFO - Analysis result stored in session
+2024-09-25 01:11:43,361 - __main__ - DEBUG - Session contents after storing analysis result: <SecureCookieSession {'analysis_result': '{"alignment_score": 0.0, "strengths": [], "areas_for_improvement": [], "interview_questions": [], "explanation": "No explanation provided."}'}>
+2024-09-25 01:11:43,361 - __main__ - INFO - Sending analysis result and redirect URL
+2024-09-25 01:11:43,362 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:11:43] "POST /analyze HTTP/1.1" 200 -
+2024-09-25 01:11:43,437 - __main__ - INFO - Rendering results page
+2024-09-25 01:11:43,437 - __main__ - INFO - Loaded analysis result from session: {
+  "alignment_score": 0.0,
+  "strengths": [],
+  "areas_for_improvement": [],
+  "interview_questions": [],
+  "explanation": "No explanation provided."
+}
+2024-09-25 01:11:43,440 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:11:43] "GET /results HTTP/1.1" 200 -
+2024-09-25 01:11:43,526 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:11:43] "GET /static/css/styles.css HTTP/1.1" 304 -
+2024-09-25 01:11:43,527 - werkzeug - INFO - 172.31.196.55 - - [25/Sep/2024 01:11:43] "GET /static/js/results.js HTTP/1.1" 200 -

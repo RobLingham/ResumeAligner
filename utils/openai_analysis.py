@@ -1,11 +1,11 @@
-from openai_chat_completion.chat_request import send_openai_request
-import json
 import logging
+from openai_chat_completion.chat_request import send_openai_request
 
 logger = logging.getLogger(__name__)
 
 def analyze_alignment(resume, job_description):
     logger.info("Starting alignment analysis")
+    
     prompt = f"""
     Analyze the alignment between the following resume and job description:
 
@@ -23,41 +23,32 @@ def analyze_alignment(resume, job_description):
     5. A brief explanation of the score
     """
 
+    logger.info("Sending request to OpenAI API")
+    response = send_openai_request(prompt)
+    logger.info(f"Received response from OpenAI API: {response}")
+
     try:
-        logger.info("Sending request to OpenAI API")
-        response = send_openai_request(prompt)
-        logger.info(f"Received response from OpenAI API: {response[:100]}...")
+        # Parse the JSON response
+        analysis_result = eval(response)
         
-        logger.info("Parsing JSON response")
-        analysis = json.loads(response)
-        logger.info(f"Successfully parsed JSON response: {json.dumps(analysis, indent=2)}")
+        # Standardize the result structure
+        standardized_result = {
+            "alignment_score": float(analysis_result.get("score", 0)),
+            "strengths": analysis_result.get("strengths", [])[:3],
+            "areas_for_improvement": analysis_result.get("areas For Improvement", [])[:3],
+            "interview_questions": analysis_result.get("interview Preparation Questions", [])[:3],
+            "explanation": analysis_result.get("explanation", "No explanation provided.")
+        }
 
-        # Validate and sanitize the response
-        analysis['score'] = max(0, min(100, float(analysis.get('score', 0))))
-        analysis['strengths'] = analysis.get('strengths', [])[:3] or ['No strengths identified']
-        analysis['improvements'] = analysis.get('improvements', [])[:3] or ['No improvements identified']
-        analysis['interview_questions'] = analysis.get('interview_questions', [])[:3] or ['No interview questions generated']
-        analysis['explanation'] = analysis.get('explanation', 'No explanation provided.')
+        logger.info(f"Standardized analysis result: {standardized_result}")
+        return standardized_result
 
-        logger.info(f"Final analysis result: {json.dumps(analysis, indent=2)}")
-        return analysis
-
-    except json.JSONDecodeError as e:
-        logger.error(f"Error decoding JSON: {str(e)}")
-        logger.error(f"Raw response: {response}")
-        return create_error_response("Invalid response format from AI model")
-    except ValueError as e:
-        logger.error(f"Error processing values: {str(e)}")
-        return create_error_response("Error processing analysis values")
     except Exception as e:
-        logger.error(f"Unexpected error during analysis: {str(e)}", exc_info=True)
-        return create_error_response("An unexpected error occurred during analysis")
-
-def create_error_response(error_message):
-    return {
-        "score": 0,
-        "strengths": ["Error occurred during analysis"],
-        "improvements": ["Please try again later"],
-        "interview_questions": ["Unable to generate questions due to an error"],
-        "explanation": error_message
-    }
+        logger.error(f"Error parsing OpenAI response: {str(e)}")
+        return {
+            "alignment_score": 0,
+            "strengths": [],
+            "areas_for_improvement": [],
+            "interview_questions": [],
+            "explanation": "An error occurred while analyzing the resume and job description."
+        }
